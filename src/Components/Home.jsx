@@ -8,7 +8,6 @@ export const Home = () => {
     const getData=()=>{
         axios.get("http://localhost:5000/data/employees")
         .then((res)=>{
-          console.log(res);
           setEmployee(res.data)
         })
     }
