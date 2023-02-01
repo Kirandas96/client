@@ -5,28 +5,24 @@ import Typography from '@mui/material/Typography';
 import { Grid, TextField } from '@mui/material';
 import { useNavigate } from 'react-router';
 import { useState } from 'react';
-import axios from 'axios';
 
 
 
-export const  Login=()=>{
-const navigate=useNavigate()
-const[data,setData]=useState({})
+export const  Signup =()=>{
+ const navigate=useNavigate()
 
-const handleLogin=()=>{
-    console.log(data);
-    axios.post("https://pear-easy-zebra.cyclic.app/auth/login",data)
+ const[sign,setSign]=useState({})
+
+const handleSignUp=()=>{
+    axios.post("https://pear-easy-zebra.cyclic.app/auth/signup",sign)
     .then((res)=>{
 
         console.log(res,"as")
-        if(res.data.message=="login successfull"){
-            navigate("/home")
-        }
-
+        
     })
     .catch((err)=>console.log(err))
-   }
-
+}
+  
 const style = {
     
     margin:"auto",
@@ -47,15 +43,15 @@ const style = {
           <Box sx={style}>
              <Box>
                <Typography sx={{mt:1,fontWeight:'600',color:"#00081c"}} variant="h4" component="h1">
-               Login
+               Register
               </Typography>
               <Box sx={{display:'flex'}}>
                 <Typography  variant="h6" sx={{ mt: 2}}>
-                Not Signed?
+                Already Signedup?
                 </Typography>
                 
-                <Typography onClick={()=>navigate("/signup")} variant="h6" sx={{ mt: 2,ml:1,mb:5,color:"#3B44F6"}}>
-                  SignUp
+                <Typography  onClick={()=>navigate("/")} variant="h6" sx={{ mt: 2,ml:1,mb:5,color:"#3B44F6"}}>
+                  Log in
                 </Typography>
               </Box>
               <Grid sx={{
@@ -63,46 +59,45 @@ const style = {
                 gap:3,
 
               }}>
- <TextField
-                id="outlined-password-input"
-                label="User Name"
-                type="text"
-                autoComplete="current-password"
-                required={true}
-                fullWidth
-                onChange={(e)=>setData({...data,name:e.target.value})}
-                 />
+
                 <TextField
                 id="outlined-password-input"
-                label="email"
+                label="Name"
                 type="text"
                 autoComplete="current-password"
-                fullWidth
                 required={true}
-                onChange={(e)=>setData({...data,email:e.target.value})}
+               fullWidth
+               onChange={(e)=>setSign({...sign,name:e.target.value})}
+                 />
+                 <TextField
+                id="outlined-password-input"
+                label="Email"
+                type="email"
+                autoComplete="current-password"
+                required={true}
+                fullWidth
+                onChange={(e)=>setSign({...sign,email:e.target.value})}
                  />
                  <TextField
                 id="outlined-password-input"
                 label="Password"
                 type="text"
                 autoComplete="current-password"
-                fullWidth
                 required={true}
-                onChange={(e)=>setData({...data,password:e.target.value})}
+                fullWidth
+                onChange={(e)=>setSign({...sign,password:e.target.value})}
                  />
 
+
+                 
                
-              
+                 
+               
               </Grid>
 
-              <Button onClick={()=>handleLogin()} sx={{mt:3,mb:3,backgroundColor:"#00081c"}} color="success" variant='contained' fullWidth size="large">
-                Login
+              <Button onClick={()=>handleSignUp()} sx={{mt:3,mb:3,backgroundColor:"#00081c"}} color="success" variant='contained' fullWidth size="large">
+                SignUp
               </Button>
-              
-
-          
-              
-              
             </Box>
             </Box>
 
