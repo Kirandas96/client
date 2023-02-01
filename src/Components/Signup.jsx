@@ -5,6 +5,7 @@ import Typography from '@mui/material/Typography';
 import { Grid, TextField } from '@mui/material';
 import { useNavigate } from 'react-router';
 import { useState } from 'react';
+import axios from 'axios';
 
 
 
@@ -18,6 +19,7 @@ const handleSignUp=()=>{
     .then((res)=>{
 
         console.log(res,"as")
+        navigate("/")
         
     })
     .catch((err)=>console.log(err))
